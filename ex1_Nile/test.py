@@ -1,4 +1,3 @@
-
 # The code provided by Codecademy learning platform
 # Minor modified by Boren Zheng
 
