@@ -2,24 +2,26 @@
 
 # Reading In The Passwords
 import csv
-# import os
-# os.chdir('/Users/boren/python_project/Python/ex3_Hacking')
+import os
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 compromised_users = []
-with open('passwords.csv') as password_file:
+with open(os.path.join(__location__,'passwords.csv')) as password_file:
   password_csv = csv.DictReader(password_file)
   for row in password_csv:
     password_row = row
     compromised_users.append(password_row['Username'])
     
-with open('compromised_users.txt', 'w') as compromised_user_file:
+with open(os.path.join(__location__,'compromised_users.txt'), 'w') as compromised_user_file:
   for user in compromised_users:
     compromised_user_file.write(user)
     
 # Notifying the Boss
 import json
 
-with open('boss_message.json', 'w') as boss_message:
+with open(os.path.join(__location__, 'boss_message.json'), 'w') as boss_message:
   boss_message_dict ={
     "recipient" : "The Boss",
     "message" : "Mission Success"
@@ -27,7 +29,7 @@ with open('boss_message.json', 'w') as boss_message:
   json.dump(boss_message_dict, boss_message)
   
 # Scrambling the Password
-with open('new_passwords.csv', 'w') as new_passwords_obj:
+with open(os.path.join(__location__, 'new_passwords.csv'), 'w') as new_passwords_obj:
   slash_null_sig = """
  _  _     ___   __  ____             
 / )( \   / __) /  \(_  _)            
